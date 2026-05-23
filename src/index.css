@@ -27,3 +27,29 @@ a {
   justify-content: center;
   gap: 45px;
 }
+.link-style {
+  color:#0A58D4;
+}
+
+#supportHero {
+  background-color: rgb(56, 126, 209);
+  color: white;
+}
+#supportHero a{
+  text-decoration: underline;
+  color: white;
+  margin-right: 15px;
+}
+#supportWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+
+#supportHero input{
+  padding: 20px 50px;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+}
