@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
-function Signup() {
-    const navigate = useNavigate();
-
-    const [username, setUsername] = useState("");
+function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -13,19 +10,16 @@ function Signup() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState("");
 
-    const handleSignup = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
         setError("");
         setSuccess("");
-        if (!username || !email || !password) {
+        if ( !email || !password ) {
             setError("All fields are required");
             return;
         }
-        if (username.trim().length < 3) {
-            setError("Username must contain at least 3 characters");
-            return;
-        }
+        
         const emailRegex = /^\S+@\S+\.\S+$/;
         if (!emailRegex.test(email)) {
             setError("Please enter a valid email address");
@@ -38,43 +32,40 @@ function Signup() {
         try {
             setLoading(true);
 
-            await axios.post("http://localhost:3002/register", {
-                username,
+            const response = await axios.post("http://localhost:3002/login", {
                 email,
                 password
             },
             {
                 withCredentials: true,
             });
-            setSuccess("Account created successfully! Redirecting to login...");
-            setUsername("");
-            setEmail("");
-            setPassword("");
-            
+            console.log("LOGIN RESPONSE:", response.data);
+            setSuccess("Login successful! Redirecting to dashboard...");
             setTimeout(() => {
-                navigate("/login");
-            }, 1000);
+                window.location.href = "http://localhost:3001";
+            }, 1500);
+            
         } catch (err) {
-            setError(err.response?.data?.message || "Unable to create account");
+            setError(err.response?.data?.message || "Unable to login");
         } finally {
             setLoading(false);
         }
     };
 
     return ( 
-        <div className="signup-page">
+        <div className="login-page">
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-lg-5">
-                        <div className="card signup-card">
+                    <div className="col-lg-4">
+                        <div className="card login-card">
                             <div className="card-body p-4">
                                 <div className="text-center mb-4">
-                                    <img src="media/images/logo.svg" alt="Zerodha Logo" className='signup-logo' />
+                                    <img src="media/images/logo.svg" alt="Zerodha Logo" className='login-logo' />
                                     <h2 className="mt-4">
-                                        Open your account
+                                        Welcome Back
                                     </h2>
                                     <p className="text-muted mt-2">
-                                        Invest in stocks, derivatives, mutual funds and more.
+                                        Access your portfolio, holdings and trading dashboard.
                                     </p>
                                 </div>
                                 {error && (
@@ -87,18 +78,7 @@ function Signup() {
                                         {success}
                                     </div>
                                 )}
-                                <form onSubmit={handleSignup}>
-                                    <div className="mb-3">
-                                        <label className="form-label">
-                                            Username
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            className='form-control' 
-                                            value={username} 
-                                            onChange={(e) => {setUsername(e.target.value); setError("");}}
-                                        />
-                                    </div>
+                                <form onSubmit={handleLogin}>
                                     <div className="mb-3">
                                         <label className="form-label">
                                             Email
@@ -107,7 +87,10 @@ function Signup() {
                                             type="email" 
                                             className='form-control' 
                                             value={email} 
-                                            onChange={(e) => {setEmail(e.target.value); setError("");}}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                                setError("");
+                                            }}
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -123,16 +106,16 @@ function Signup() {
                                     </div>
                                     <button type='submit' className='btn btn-primary w-100' disabled={loading}>
                                         {
-                                            loading ? "Signing Up..." : "Sign Up"
+                                            loading ? "Logging In..." : "Login"
                                         }
                                     </button>
                                 </form>
                                 <div className="text-center mt-4">
                                     <span className="text-muted">
-                                        Already have an account?
+                                        Don't have an account?
                                     </span>
-                                    <Link to={"/login"} className='ms-2'>
-                                        Login
+                                    <Link to={"/signup"} className='ms-2'>
+                                        Sign Up
                                     </Link>
                                 </div>
                             </div>
@@ -144,4 +127,4 @@ function Signup() {
      );
 }
 
-export default Signup;
+export default Login;

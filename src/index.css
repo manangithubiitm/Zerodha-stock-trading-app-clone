@@ -53,3 +53,56 @@ a {
   border-radius: 10px;
   border: none;
 }
+
+/* Signup page css */
+.signup-page {
+  padding: 60px 0;
+}
+.signup-card {
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  box-shadow: none;
+}
+.signup-logo {
+  width: 140px;
+}
+.form-control {
+  padding: 10px;
+}
+.btn-primary {
+  padding: 12px;
+  font-weight: 500;
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    transition: 0.2s;
+}
+
+/* Login css */
+.login-page {
+    padding: 40px 0;
+}
+
+.login-card {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+.login-logo {
+    width: 130px;
+}
+
+.form-control {
+    padding: 10px;
+}
+
+.btn-primary {
+    padding: 12px;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    transition: 0.2s;
+}
