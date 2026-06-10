@@ -22,6 +22,9 @@ app.use(cors({
     origin: [
         "http://localhost:3000",
         "http://localhost:3001",
+
+        "https://frontend.d2zwelb89uhnl.amplifyapp.com",
+        "https://dashboard-development.d2b3b6bi15f1oq.amplifyapp.com"
     ],
     credentials: true,
 }));
@@ -76,8 +79,8 @@ app.post("/register", async(req, res) => {
         );
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: true,
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000,
         });
         res.status(201).json({
@@ -148,8 +151,8 @@ app.post('/login', async(req, res) => {
         //Store JWT in cookie
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: true,
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000,
         });
 
@@ -173,8 +176,8 @@ app.post('/login', async(req, res) => {
 app.post('/logout', (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
+        sameSite: "none",
+        secure: true,
     });
     return res.status(200).json({
         success: true,
