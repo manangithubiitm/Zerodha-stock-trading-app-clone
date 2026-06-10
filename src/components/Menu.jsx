@@ -32,7 +32,7 @@ const Menu = () => {
             await axios.post("https://zerodha-stock-trading-app-backend.onrender.com/logout", {}, {
                 withCredentials: true,
             });
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = "https://frontend.d2zwelb89uhnl.amplifyapp.com/login";
         } catch (err) {
             console.log(err);
         }
