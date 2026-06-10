@@ -32,7 +32,7 @@ function Login() {
         try {
             setLoading(true);
 
-            const response = await axios.post("http://localhost:3002/login", {
+            const response = await axios.post("https://zerodha-stock-trading-app-backend.onrender.com/login", {
                 email,
                 password
             },
@@ -42,7 +42,7 @@ function Login() {
             console.log("LOGIN RESPONSE:", response.data);
             setSuccess("Login successful! Redirecting to dashboard...");
             setTimeout(() => {
-                window.location.href = "http://localhost:3001";
+                window.location.href = "https://dashboard-development.d2b3b6bi15f1oq.amplifyapp.com";
             }, 1500);
             
         } catch (err) {

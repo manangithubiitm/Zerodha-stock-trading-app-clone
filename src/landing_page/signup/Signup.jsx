@@ -38,7 +38,7 @@ function Signup() {
         try {
             setLoading(true);
 
-            await axios.post("http://localhost:3002/register", {
+            await axios.post("https://zerodha-stock-trading-app-backend.onrender.com/register", {
                 username,
                 email,
                 password
