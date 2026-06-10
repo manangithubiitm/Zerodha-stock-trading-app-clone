@@ -24,7 +24,7 @@ const Dashboard = () => {
             setIsCheckingAuth(false);
         })
         .catch(() => {
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = "https://frontend.d2zwelb89uhnl.amplifyapp.com/login";
         });
     }, []);
     if (isCheckingAuth){
