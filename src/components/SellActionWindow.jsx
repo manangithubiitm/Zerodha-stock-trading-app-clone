@@ -17,7 +17,7 @@ const SellActionWindow = ({ stock }) => {
   const handleSellClick = () => {
     axios
       .post(
-        "http://localhost:3002/sellOrder",
+        "https://zerodha-stock-trading-app-backend.onrender.com/sellOrder",
         {
           name: stock.name,
           qty: stockQuantity,

@@ -1,25 +1,30 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Tooltip, Grow } from "@mui/material";
 import GeneralContext from "./GeneralContext";
-import { BarChartOutlined, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz } from "@mui/icons-material";
+import {
+  BarChartOutlined,
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  MoreHoriz,
+} from "@mui/icons-material";
 import { Doughnut } from "react-chartjs-2";
 import { DoughnutChart } from "./DoughnutChart";
 import axios from "axios";
 
-
 const WatchList = () => {
   const [watchlist, setWatchlist] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3002/watchlist", {
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log("Watchlist:", res.data);
-      setWatchlist(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    axios
+      .get("https://zerodha-stock-trading-app-backend.onrender.com/watchlist", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("Watchlist:", res.data);
+        setWatchlist(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   const labels = watchlist.map((stock) => stock.symbol);
   const data = {
@@ -46,8 +51,8 @@ const WatchList = () => {
         ],
         borderWidth: 1,
       },
-    ]
-  }
+    ],
+  };
   return (
     <div className="watchlist-container">
       <div className="search-container">
@@ -65,7 +70,7 @@ const WatchList = () => {
           return <WatchListItem stock={stock} key={index} />;
         })}
       </ul>
-      <DoughnutChart data={data}/>
+      <DoughnutChart data={data} />
     </div>
   );
 };
@@ -105,20 +110,20 @@ const WatchListItem = ({ stock }) => {
 const WatchListActions = ({ stock }) => {
   const context = useContext(GeneralContext);
 
-  const handleSellClick = async() => {
+  const handleSellClick = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3002/holding/${stock.symbol}`,
+        `https://zerodha-stock-trading-app-backend.onrender.com/holding/${stock.symbol}`,
         {
           withCredentials: true,
-        }
+        },
       );
       context.openSellWindow(res.data);
-    } catch(err) {
-        alert("You don't own this stock");
-        console.log(err);
+    } catch (err) {
+      alert("You don't own this stock");
+      console.log(err);
     }
-  }
+  };
   // console.log(context);
   return (
     <span className="actions">
@@ -129,7 +134,9 @@ const WatchListActions = ({ stock }) => {
           arrow
           slots={{ transition: Grow }}
         >
-          <button className="buy" onClick={() => context.openBuyWindow(stock)}>Buy</button>
+          <button className="buy" onClick={() => context.openBuyWindow(stock)}>
+            Buy
+          </button>
         </Tooltip>
         <Tooltip
           title="Sell (S)"
@@ -137,7 +144,9 @@ const WatchListActions = ({ stock }) => {
           arrow
           slots={{ transition: Grow }}
         >
-          <button className="sell" onClick={handleSellClick}>Sell</button>
+          <button className="sell" onClick={handleSellClick}>
+            Sell
+          </button>
         </Tooltip>
         <Tooltip
           title="Analytics (A)"
@@ -145,9 +154,9 @@ const WatchListActions = ({ stock }) => {
           arrow
           slots={{ transition: Grow }}
         >
-            <button className="action">
-                <BarChartOutlined className="icon"/>
-            </button>
+          <button className="action">
+            <BarChartOutlined className="icon" />
+          </button>
         </Tooltip>
         <Tooltip
           title="More"
@@ -155,9 +164,9 @@ const WatchListActions = ({ stock }) => {
           arrow
           slots={{ transition: Grow }}
         >
-            <button className="action">
-                <MoreHoriz className="icon"/>
-            </button>
+          <button className="action">
+            <MoreHoriz className="icon" />
+          </button>
         </Tooltip>
       </span>
     </span>

@@ -11,7 +11,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:3002/orders", {
+      const response = await axios.get("https://zerodha-stock-trading-app-backend.onrender.com/orders", {
         withCredentials: true,
       });
       setOrders(response.data);

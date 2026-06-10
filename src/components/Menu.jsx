@@ -9,7 +9,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get("http://localhost:3002/auth/check", {
+                const response = await axios.get("https://zerodha-stock-trading-app-backend.onrender.com/auth/check", {
                     withCredentials: true,
                 });
                 setUsername(response.data.user.username);
@@ -29,7 +29,7 @@ const Menu = () => {
     
     const handleLogout = async () => {
         try {
-            await axios.post("http://localhost:3002/logout", {}, {
+            await axios.post("https://zerodha-stock-trading-app-backend.onrender.com/logout", {}, {
                 withCredentials: true,
             });
             window.location.href = "http://localhost:3000/login";

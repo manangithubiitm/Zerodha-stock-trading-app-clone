@@ -13,7 +13,7 @@ const BuyActionWindow = ({ stock }) => {
   const context = useContext(GeneralContext);
   
   const handleBuyClick = () => {
-    axios.post("http://localhost:3002/newOrder", {
+    axios.post("https://zerodha-stock-trading-app-backend.onrender.com/newOrder", {
         name: stock.symbol,
         qty: stockQuantity,
         price: stockPrice,

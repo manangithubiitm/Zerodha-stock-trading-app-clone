@@ -11,10 +11,10 @@ const Holdings = () => {
   const fetchHoldings = async () => {
     try {
       const [holdingRes, portfolioRes] = await Promise.all([
-        axios.get("http://localhost:3002/allHoldings", {
+        axios.get("https://zerodha-stock-trading-app-backend.onrender.com/allHoldings", {
           withCredentials: true,
         }),
-        axios.get("http://localhost:3002/portfolio", {
+        axios.get("https://zerodha-stock-trading-app-backend.onrender.com/portfolio", {
           withCredentials: true,
         }),
       ]);

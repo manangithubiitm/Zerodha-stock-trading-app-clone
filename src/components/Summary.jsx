@@ -10,7 +10,7 @@ const Summary = () => {
 
   const fetchPortfolio = async () => {
     try {
-      const res = await axios.get("http://localhost:3002/portfolio", {
+      const res = await axios.get("https://zerodha-stock-trading-app-backend.onrender.com/portfolio", {
         withCredentials: true,
       });
       setPortfolio(res.data);

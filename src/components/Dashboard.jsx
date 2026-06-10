@@ -15,7 +15,7 @@ import { GeneralContextProvider } from "./GeneralContext";
 const Dashboard = () => {
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     useEffect(() => {
-        axios.get("http://localhost:3002/auth/check",
+        axios.get("https://zerodha-stock-trading-app-backend.onrender.com/auth/check",
             {
                 withCredentials: true,
             }
