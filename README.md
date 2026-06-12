@@ -125,11 +125,12 @@ Branches
         │   ├── components/  # Dashboard, BuyActionWindow, Funds, Holdings, Home, Menu, Watchlist etc
         │   └── index.js  # React-router DOM which is mounting the Home component.
         └── package.json  
-
 ````
 
-⚙️ Getting Started
-Prerequisites
-Node.js v16 or higher
-MongoDB Atlas account (or local MongoDB installation)
-npm
+# ⚙️ Getting Started
+
+## Prerequisites
+
+- Node.js v16 or higher
+- MongoDB Atlas account (or local MongoDB installation)
+- npm
