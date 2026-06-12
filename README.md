@@ -126,7 +126,7 @@ Branches
         │   └── index.js  # React-router DOM which is mounting the Home component.
         └── package.json  
 
-
+````
 
 ⚙️ Getting Started
 Prerequisites
